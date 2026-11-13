@@ -5,21 +5,34 @@ import "./App.css";
 import { Card } from "./components/ProductCard";
 import { Header } from "./components/Header";
 
+import products from "./data/products";
+
 function App() {
+  //const products = [];
   return (
     <>
       {/* <h1>Projeto Inicial React com Vite</h1> */}
       <Header name={"Burgueria do Zé"} openingHours={"Aberto de 11h às 23h"} />
 
-      {/* {lista.map((item) => {
-        <Card
-          price={item.price}
-          name={item.name}
-          description={item.description}
-        />;
-      })} */}
+      {products.length == 0 ? (
+        <p className="empty">Cardápio em atualização. Volte mais tarde!</p>
+      ) : (
+        <main className="product-list">
+          {products.map((item) => (
+            <Card
+              key={item.id}
+              price={item.price}
+              name={item.name}
+              description={item.description}
+              available={item.available}
+              featured={item.featured}
+              image={item.image}
+            />
+          ))}
+        </main>
+      )}
 
-      <Card
+      {/* <Card
         price={29.4}
         name={"X-Burguer"}
         description={"Pão, hambúrguer de 120 g, queijo e molho da casa."}
@@ -31,7 +44,7 @@ function App() {
         price={60.99}
         name={"Combo X-Burguer"}
         description={"Ideal para duas pessoas...depende da sua fome!"}
-      />
+      /> */}
     </>
   );
 }
